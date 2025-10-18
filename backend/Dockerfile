@@ -18,4 +18,4 @@ RUN pip install -r requirements.txt
 EXPOSE 5000
 
 # Запустимо наш застосунок всередині контейнера
-ENTRYPOINT ["python", "main.py"]
+ENTRYPOINT ["sh", "-c", "python seed.py && python main.py"]
