@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "dataroom"
+version = "0.1.0"
+description = ""
+authors = ["Artem <artem.zimovets@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+alembic = "^1.17.0"
+fastapi = "^0.119.0"
+uvicorn = "^0.38.0"
+sqlalchemy = "^2.0.44"
+python-multipart = "^0.0.20"
+dotenv = "^0.9.9"
+pydantic = "^2.10.0"
+pydantic-settings = "^2.11.0"
+python-dotenv = "^1.1.1"
+psycopg2-binary = "^2.9.11"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
