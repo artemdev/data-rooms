@@ -1,10 +1,24 @@
-from connect_db import session
+from src.database.db import session
 from src.database.models import DataRoom, Folder, File
 
 
 if __name__ == "__main__":
+    data_room_name = 'data room'
+    try:
+        # Check if data already exists
+        existing_room = session.query(DataRoom).filter_by(name=data_room_name).first()
+
+        if existing_room:
+            print("Seed data already exists. Skipping seeding.")
+            session.close()
+            exit(0)
+    except Exception as e:
+        print(f"Error checking existing data (this is normal for first run): {e}")
+        # Continue with seeding on a fresh database
+        session.rollback()
+
     # Create a DataRoom
-    room = DataRoom(name="groceries")
+    room = DataRoom(name=data_room_name)
 
     session.add(room)
     session.flush()  # flush to get room.id
