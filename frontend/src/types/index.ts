@@ -6,6 +6,8 @@ export type DataItem = {
     files?: DataItem[]
     isFile?: boolean
     content_type?: string
+    file_size: string
+    created_at: string
 }
 
 export type DataItemTransformed = {

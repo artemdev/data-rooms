@@ -20,6 +20,8 @@ export function transformToArboristArray(
                     ...file,
                     isFile: true,
                     contentType: file.content_type,
+                    fileSize: file.file_size,
+                    createdAt: file.created_at,
                 })
             }
         }
