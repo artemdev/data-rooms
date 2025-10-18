@@ -1,12 +1,10 @@
-import { toast } from 'sonner'
 import FileUploadDropzone from './FileUploadDropzone'
 import PreviewFolderFiles from './PreviewFolderFiles'
-import { type TreeAction } from '../SideBar/treeDataReducer'
-import { useSearchParams } from 'react-router-dom'
+import FileCard from './FileCard'
 
 import type { DataItemTransformed } from '@/types'
 import type { Dispatch } from 'react'
-import FileCard from './FileCard'
+import { type TreeAction } from '../SideBar/treeDataReducer'
 
 export default function Content({
     selectedEntity,
@@ -16,8 +14,6 @@ export default function Content({
     dispatch: Dispatch<TreeAction>
     treeData: DataItemTransformed[]
 }) {
-    const [searchParams] = useSearchParams()
-
     if (!selectedEntity) {
         return (
             <div className="flex-1 w-full flex items-center justify-center">
@@ -31,60 +27,7 @@ export default function Content({
     if (!selectedEntity?.isFile) {
         return (
             <div>
-                <FileUploadDropzone
-                    uploadFile={async (file) => {
-                        const folderId = searchParams.get('folderId')
-
-                        if (!folderId) {
-                            toast.error('Please select a folder first')
-                            return
-                        }
-
-                        const formData = new FormData()
-                        formData.append('file', file)
-                        formData.append('name', file.name)
-                        formData.append('folder_id', folderId)
-
-                        try {
-                            const response = await fetch(
-                                import.meta.env.VITE_API_URL + '/files/upload/',
-                                {
-                                    method: 'POST',
-                                    body: formData,
-                                }
-                            )
-
-                            if (!response.ok) {
-                                const error = await response.json()
-                                throw new Error(error.detail)
-                            }
-
-                            const newFile = await response.json()
-
-                            dispatch({
-                                type: 'ADD',
-                                parentId: folderId,
-                                item: {
-                                    id: newFile.id,
-                                    name: newFile.name,
-                                    description: newFile.description || '',
-                                    isFile: true,
-                                    contentType: newFile.content_type,
-                                    file_size: newFile.file_size,
-                                },
-                            })
-
-                            toast.success('File uploaded successfully')
-                        } catch (error) {
-                            toast.error('Failed to upload file,', {
-                                description:
-                                    error instanceof Error
-                                        ? error.message
-                                        : 'Unknown error',
-                            })
-                        }
-                    }}
-                />
+                <FileUploadDropzone dispatch={dispatch} />
                 <div className="">
                     <h2 className="text-3xl font-bold text-gray-500">
                         <PreviewFolderFiles folder={selectedEntity} />

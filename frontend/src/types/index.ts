@@ -14,8 +14,8 @@ export type DataItemTransformed = {
     description: string
     children?: DataItemTransformed[]
     isFile?: boolean
-    file_size?: number // size in bites
-    created_at?: string
+    fileSize?: number // size in bites
+    createdAt?: string
     format?: string
     contentType?: string
 }

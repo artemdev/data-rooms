@@ -33,7 +33,7 @@ export default function FileCard({ file }: { file: DataItemTransformed }) {
 
                     <span className="text-sm">
                         <span className="font-medium">Size:</span>
-                        {formatSize(file.file_size)}
+                        {formatSize(file.fileSize)}
                     </span>
                 </div>
 
@@ -41,7 +41,7 @@ export default function FileCard({ file }: { file: DataItemTransformed }) {
                     <Calendar size={20} />
                     <span className="text-sm">
                         <span className="font-medium">Created:</span>{' '}
-                        {formatDate(file.created_at)}
+                        {formatDate(file.createdAt)}
                     </span>
                 </div>
             </div>
