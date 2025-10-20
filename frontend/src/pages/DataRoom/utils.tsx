@@ -17,10 +17,12 @@ export function transformToArboristArray(
         if (Array.isArray(node.files) && node.files.length > 0) {
             for (const file of node.files) {
                 children.push({
-                    ...file,
+                    id: file.id,
+                    name: file.name,
+                    description: file.description,
                     isFile: true,
                     contentType: file.content_type,
-                    fileSize: file.file_size,
+                    fileSize: parseInt(file.file_size, 10),
                     createdAt: file.created_at,
                 })
             }

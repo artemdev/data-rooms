@@ -1,6 +1,6 @@
 import type { DataItem, DataItemTransformed } from '@/types'
 
-export function isFolder(node: DataItem | undefined) {
+export function isFolder(node: DataItem | DataItemTransformed | undefined) {
     return node && !node.isFile
 }
 
