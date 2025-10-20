@@ -31,6 +31,7 @@
 
 ### 2. Scalability & Performance
 - **Component Architecture**: Atomic, reusable components for maintainability
+- **Reduced bundle size**: Lazy loaded components are reducing bundle size
 - **React Arborist**: Specialized tree library with drag-and-drop, list virtualization, and optimization for large file/folder structures
 - **Virtual Scrolling**: Efficiently handles large file trees without performance degradation
 - **Async Operations**: FastAPI async/await enables concurrent request handling
