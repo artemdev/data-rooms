@@ -64,8 +64,8 @@ export default function DataRoom() {
     }
 
     return (
-        <div className="h-screen w-screen flex">
-            <aside className="w-80 bg-gray-800 text-white flex flex-col">
+        <div className="h-screen w-screen flex flex-col lg:flex-row">
+            <aside className="sidebar w-full lg:w-80 lg:h-full bg-gray-800 text-white flex flex-col lg:fixed lg:inset-y-0 lg:left-0 overflow-auto">
                 <Sidebar
                     treeData={treeData}
                     dispatch={dispatch}
@@ -73,7 +73,7 @@ export default function DataRoom() {
                 />
             </aside>
 
-            <main className="flex-1 bg-gray-100 p-8 overflow-auto flex flex-col">
+            <main className="content flex-1 bg-gray-100 p-4 lg:p-8 lg:ml-80 overflow-auto flex flex-col w-full">
                 <Content
                     selectedEntity={selectedEntity}
                     dispatch={dispatch}

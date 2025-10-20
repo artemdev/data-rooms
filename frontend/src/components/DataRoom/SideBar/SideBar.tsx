@@ -36,14 +36,14 @@ export default function Sidebar({
 
     return (
         <>
-            <div className="p-6 text-2xl font-bold border-b border-gray-700">
+            <div className="p-4 sm:p-6 text-xl sm:text-2xl font-bold border-b border-gray-700">
                 <AddFolder dispatch={dispatch} />
             </div>
 
-            <nav className="flex-1 p-4 space-y-3">
+            <nav className="flex-1 p-3 sm:p-4 space-y-3 overflow-auto">
                 <Tree
                     data={treeData}
-                    width={'288px'}
+                    width={'100%'}
                     rowHeight={32}
                     paddingBottom={32}
                     onSelect={([node]: NodeApi<DataItemTransformed>[]) => {
@@ -89,13 +89,13 @@ export default function Sidebar({
                 </Tree>
             </nav>
 
-            <div className="p-6 border-t border-gray-700">
+            <div className="p-4 sm:p-6 border-t border-gray-700">
                 <Link
                     to="/"
                     className="flex items-center gap-2 text-white hover:text-yellow-500 transition-all duration-200"
                 >
-                    <Home size={20} />
-                    <span className="text-lg font-medium">Home</span>
+                    <Home size={18} className="sm:size-5" />
+                    <span className="text-base sm:text-lg font-medium">Home</span>
                 </Link>
             </div>
         </>

@@ -9,11 +9,11 @@ export default function FileCard({ file }: { file: DataItemTransformed }) {
     const fileFormat = file.contentType
 
     return (
-        <div className="w-1/3 min-w-[300px] max-w-[500px] flex flex-col border-2 border-gray-300 rounded-lg p-8 shadow-lg bg-white">
+        <div className="w-full sm:w-2/3 lg:w-1/2 xl:w-1/3 min-w-[280px] max-w-[500px] flex flex-col border-2 border-gray-300 rounded-lg p-4 sm:p-6 lg:p-8 shadow-lg bg-white mx-auto">
             <div className="flex flex-col items-center gap-4 mb-6">
-                <FileText size={80} className="text-gray-400" />
+                <FileText size={60} className="text-gray-400 sm:size-20" />
 
-                <h2 className="text-2xl font-semibold text-gray-800 text-center break-words">
+                <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 text-center break-words w-full px-2">
                     {file.name}
                 </h2>
             </div>

@@ -16,8 +16,8 @@ export default function Content({
 }) {
     if (!selectedEntity) {
         return (
-            <div className="flex-1 w-full flex items-center justify-center">
-                <div className="text-2xl font-bold text-gray-500">
+            <div className="flex-1 w-full flex items-center justify-center px-4">
+                <div className="text-xl md:text-2xl font-bold text-gray-500 text-center">
                     Please select a folder or file to view
                 </div>
             </div>
@@ -26,10 +26,10 @@ export default function Content({
 
     if (!selectedEntity?.isFile) {
         return (
-            <div>
+            <div className="w-full">
                 <FileUploadDropzone dispatch={dispatch} />
-                <div className="">
-                    <h2 className="text-3xl font-bold text-gray-500">
+                <div className="mt-4">
+                    <h2 className="text-2xl md:text-3xl font-bold text-gray-500">
                         <PreviewFolderFiles folder={selectedEntity} />
                     </h2>
                 </div>
@@ -47,8 +47,8 @@ export default function Content({
         )
     }
     return (
-        <div className="flex-1 flex items-center justify-center">
-            <div className="text-2xl font-bold text-gray-500">
+        <div className="flex-1 flex items-center justify-center px-4">
+            <div className="text-xl md:text-2xl font-bold text-gray-500 text-center">
                 Please select a folder or file to view
             </div>
         </div>
