@@ -2,8 +2,28 @@ from fastapi import FastAPI
 from src.routes import folders, files, data_rooms
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
+from config import settings
+from fastapi_limiter import FastAPILimiter
+import redis.asyncio as redis
+from contextlib import asynccontextmanager
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup
+    r = await redis.Redis(
+        host=settings.REDIS_DOMAIN,
+        port=settings.REDIS_PORT,
+        password=settings.REDIS_PASSWORD,
+        db=0,
+        encoding="utf-8",
+        decode_responses=True
+    )
+    await FastAPILimiter.init(r)
+    yield
+    # Shutdown (cleanup if needed)
+    await r.close()
+
+app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,

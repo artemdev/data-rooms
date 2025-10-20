@@ -23,29 +23,6 @@ def create_folder(
     """
     Create a new folder, optionally nested in a parent folder.
     The depth is calculated automatically based on the parent folder.
-
-    Parameters:
-    - body: FolderCreate containing:
-      - name: Folder name (required)
-      - parent_folder_id: UUID of parent folder (optional, null for root folders)
-      - data_room_id: UUID of the data room (required)
-
-    Returns:
-    - 201: Folder created successfully
-
-    Errors:
-    - 400: Empty folder name
-    - 400: Folder name exceeds 50 characters
-    - 400: Invalid characters in name (/ \\ : * ? " < > |)
-    - 400: Folder with same name already exists in location
-    - 404: Parent folder not found
-    - 422: Invalid UUID format
-    - 500: Database constraint error
-    - 500: Unexpected server error
-
-    Notes:
-    - If parent_folder_id is null, depth will be set to 0 (root folder)
-    - If parent_folder_id is provided, depth will be set to parent.depth + 1
     """
     try:
         # Validate folder name
