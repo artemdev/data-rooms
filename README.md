@@ -1,3 +1,5 @@
+API documentation: https://data-rooms-production-d8ba.up.railway.app/docs
+
 ## Installation
 
 ### Prerequisites
