@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import App from './App.tsx'
-import DataRoom from './components/DataRoom'
+import DataRoom from './pages/DataRoom/index.tsx'
 import { Toaster } from './components/ui/sonner'
 import './index.css'
 

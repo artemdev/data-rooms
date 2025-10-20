@@ -1,4 +1,3 @@
-from typing import List, Optional
 from uuid import UUID
 from pathlib import Path
 from fastapi import APIRouter, HTTPException, Depends, status, UploadFile, File as FastAPIFile
@@ -28,30 +27,6 @@ def upload_file(
 ):
     """
     Upload a PDF file to a folder.
-
-    Parameters:
-    - file: PDF file to upload (required)
-    - name: File name without extension (required)
-    - folder_id: UUID of the target folder (required)
-
-    Returns:
-    - 201: File uploaded successfully
-
-    Errors:
-    - 400: No file provided
-    - 400: Invalid file type (not PDF)
-    - 400: Empty file name
-    - 400: File name exceeds 50 characters
-    - 400: Invalid characters in name (/ \\ : * ? " < > |)
-    - 400: File size exceeds 100MB
-    - 400: Empty file (0 bytes)
-    - 404: Folder not found
-    - 409: File with same name already exists
-    - 500: Database constraint error
-    - 500: Unexpected server error
-
-    Notes:
-    - Original filename is automatically truncated to 100 characters if needed
     """
     try:
         # Validate file exists
@@ -125,7 +100,6 @@ def upload_file(
 
         return uploaded_file
     except SQLAlchemyError as e:
-        logger.error(e)
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
         )
@@ -189,18 +163,6 @@ def download_file(
 ):
     """
     Download/view a file.
-
-    Parameters:
-    - file_id: UUID of the file (required)
-
-    Returns:
-    - 200: File downloaded successfully
-
-    Errors:
-    - 404: File not found in database
-    - 404: File doesn't exist on disk
-    - 422: Invalid UUID format
-    - 500: Unexpected server error
     """
     try:
         file = repository_files.get_file(db, file_id)
@@ -242,23 +204,6 @@ def update_file_name(
 ):
     """
     Update a file's name.
-
-    Parameters:
-    - file_id: UUID of the file (required)
-    - name: New file name without extension (required, max 50 characters)
-
-    Returns:
-    - 200: File name updated successfully
-
-    Errors:
-    - 400: Empty file name
-    - 400: File name exceeds 50 characters
-    - 400: Invalid characters in name (/ \\ : * ? " < > |)
-    - 400: File with same name already exists in folder
-    - 404: File not found
-    - 422: Invalid UUID format
-    - 500: Database constraint error
-    - 500: Unexpected server error
     """
     try:
         name = body.name
@@ -320,17 +265,6 @@ def delete_file(
 ):
     """
     Delete a file (removes from database and disk).
-
-    Parameters:
-    - file_id: UUID of the file (required)
-
-    Returns:
-    - 200: File deleted successfully
-
-    Errors:
-    - 404: File not found
-    - 422: Invalid UUID format
-    - 500: Unexpected server error
     """
     try:
         file = repository_files.delete_file(db, file_id)

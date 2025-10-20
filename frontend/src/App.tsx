@@ -1,4 +1,4 @@
-import DataRooms from './components/DataRooms'
+import DataRooms from './pages/DataRooms'
 
 import './App.css'
 

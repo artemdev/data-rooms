@@ -1,6 +1,5 @@
 import type { DataItemTransformed } from '@/types'
 
-// Action types for tree data operations
 export type TreeAction =
     | { type: 'INIT'; data: DataItemTransformed[] }
     | { type: 'ADD'; parentId: string | null; item: DataItemTransformed }
