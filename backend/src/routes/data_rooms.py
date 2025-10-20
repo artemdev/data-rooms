@@ -10,7 +10,7 @@ from src.repository import data_rooms as repository_data_rooms
 router = APIRouter(prefix='/data-rooms', tags=["data-rooms"])
 
 
-@router.get('', response_model=List[DataRoomResponse], dependencies=[Depends(RateLimiter(times=5, seconds=10))], )
+@router.get('', response_model=List[DataRoomResponse], dependencies=[Depends(RateLimiter(times=7, seconds=5))], )
 def get_all_data_rooms(db: Session = Depends(get_db)):
     try:
         new_data_room = repository_data_rooms.get_all_data_rooms(db)
