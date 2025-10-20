@@ -9,13 +9,11 @@ import { treeDataReducer } from './SideBar/treeDataReducer'
 
 import Content from './Content'
 import Sidebar from './SideBar'
-import { Spinner } from '@/components/ui/spinner'
 
 import { type DataItem, type DataItemTransformed } from '@/types'
 
 export default function DataRoom() {
     const { id } = useParams()
-    const [loading, setLoading] = useState<boolean>(true)
     const [treeData, dispatch] = useReducer(treeDataReducer, undefined)
     const [searchParams] = useSearchParams()
     const [selectedEntity, setSelectedEntity] = useState<
@@ -48,16 +46,7 @@ export default function DataRoom() {
             .catch(() => {
                 toast.error('Failed to fetch data')
             })
-            .finally(() => setLoading(false))
     }, [id])
-
-    if (loading) {
-        return (
-            <div className="min-h-screen h-screen w-screen bg-gray-100 flex items-center justify-center">
-                <Spinner variant="circle" className="size-16 text-gray-500" />
-            </div>
-        )
-    }
 
     if (!treeData || treeData.length === 0) {
         return <div>Room is empty</div>

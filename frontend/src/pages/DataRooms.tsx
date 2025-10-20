@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Folder, FileText } from 'lucide-react'
-import { Spinner } from '@/components/ui/spinner'
 
 import { type DataItem } from '../types/index'
 
 export default function DataRooms() {
     const [data, setData] = useState<DataItem[]>([])
-    const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
     const navigate = useNavigate()
@@ -27,19 +25,10 @@ export default function DataRooms() {
             .catch((error) => {
                 setError(error.message)
             })
-            .finally(() => setLoading(false))
     }, [])
 
     if (error) {
         return <div>{error}</div>
-    }
-
-    if (loading) {
-        return (
-            <div className="min-h-screen h-screen w-screen bg-gray-800 flex items-center justify-center">
-                <Spinner variant="circle" className="size-16 text-white" />
-            </div>
-        )
     }
 
     return (

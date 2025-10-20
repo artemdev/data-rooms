@@ -95,7 +95,9 @@ export default function Sidebar({
                     className="flex items-center gap-2 text-white hover:text-yellow-500 transition-all duration-200"
                 >
                     <Home size={18} className="sm:size-5" />
-                    <span className="text-base sm:text-lg font-medium">Home</span>
+                    <span className="text-base sm:text-lg font-medium">
+                        Home
+                    </span>
                 </Link>
             </div>
         </>
